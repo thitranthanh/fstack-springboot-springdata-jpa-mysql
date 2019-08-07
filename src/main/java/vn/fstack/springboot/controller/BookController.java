@@ -33,6 +33,10 @@ public class BookController {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<BookEntity> getBookById(@PathVariable("id") int id) {
 		BookEntity book = bookRepository.findById(id).get();
+        if (book == null) {
+            return new ResponseEntity<BookEntity>(book, HttpStatus.NOT_FOUND);
+        }
+		
 		return new ResponseEntity<>(book, HttpStatus.OK);
 	}
 
