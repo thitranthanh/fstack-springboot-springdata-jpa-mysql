@@ -31,7 +31,7 @@ public class BookController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<BookEntity> getBookById(@PathVariable("id") int id) {
+	public ResponseEntity<BookEntity> getBookById(@PathVariable("id") long id) {
 		BookEntity book = bookRepository.findById(id).get();
         if (book == null) {
             return new ResponseEntity<BookEntity>(book, HttpStatus.NOT_FOUND);
@@ -47,7 +47,7 @@ public class BookController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<BookEntity> putCreateNewBook(@PathVariable("id") int id, @RequestBody BookEntity book) {
+	public ResponseEntity<BookEntity> putCreateNewBook(@PathVariable("id") long id, @RequestBody BookEntity book) {
 		
 		BookEntity found = bookRepository.findById(book.getId()).get();
 		if (found == null) {
@@ -59,7 +59,7 @@ public class BookController {
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<BookEntity> deleteBookById(@PathVariable("id") int id) {
+	public ResponseEntity<BookEntity> deleteBookById(@PathVariable("id") long id) {
 		BookEntity bookDeleted = new BookEntity();
 		return new ResponseEntity<BookEntity>(bookDeleted, HttpStatus.OK);
 	}
